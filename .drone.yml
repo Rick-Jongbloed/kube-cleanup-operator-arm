@@ -29,3 +29,4 @@ steps:
     repo: lwolf/kube-cleanup-operator
     tags: latest
     log: debug
+    dockerfile: kube-cleanup-operator/Dockerfile
