@@ -22,6 +22,7 @@ steps:
   - make build
   - cp bin/kube-cleanup-operator ..
 
+
 - name: publish-authelia
   image: docker-registry:5000/drone-plugins/kaniko:latest
   settings:
