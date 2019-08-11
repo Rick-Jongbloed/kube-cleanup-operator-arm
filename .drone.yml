@@ -1,11 +1,6 @@
 kind: pipeline
 name: kube-cleanup-operator-arm
 
-# platform:
-#   os: linux
-#   architecture: arm
-#   variant: 7
-
 workspace:
   base: /go
 
@@ -24,7 +19,7 @@ steps:
   - make build
   - cp bin/kube-cleanup-operator /go
   - cp Dockerfile /go
-  - sed 's=FROM alpine=FROM arm32v7/alpine=g /go/Dockerfile
+  - sed 's=FROM alpine=FROM arm32v7/alpine=g' /go/Dockerfile
 
 - name: publish-kube-cleanup-operator
   image: docker-registry:5000/drone-plugins/kaniko:latest
