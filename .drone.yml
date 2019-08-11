@@ -8,7 +8,6 @@ name: kube-cleanup-operator-arm
 
 workspace:
   base: /go
-#  path: src/github.com/lwolf/kube-cleanup-operator
 
 steps:
 - name: clone-kube-cleanup-operator
@@ -19,16 +18,12 @@ steps:
 - name: build-kube-cleanup-operator
   image: golang:buster
   commands:
-  #- apt update
-  #- apt install -y --no-install-recommends make
   - cd src/github.com/lwolf/kube-cleanup-operator
-  - pwd
-  - set
   - go get -u github.com/golang/dep/cmd/dep
   - make install_deps
   - make build
   - cp bin/kube-cleanup-operator /go
-  - ls /go
+  - cp Dockerfile /go
 
 - name: publish-authelia
   image: docker-registry:5000/drone-plugins/kaniko:latest
@@ -37,4 +32,3 @@ steps:
     repo: lwolf/kube-cleanup-operator
     tags: latest
     log: debug
-    dockerfile: kube-cleanup-operator/Dockerfile
