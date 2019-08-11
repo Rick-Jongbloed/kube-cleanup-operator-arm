@@ -8,7 +8,7 @@ name: kube-cleanup-operator-arm
 
 workspace:
   base: /go
-  path: src/github.com/lwolf/kube-cleanup-operator
+#  path: src/github.com/lwolf/kube-cleanup-operator
 
 steps:
 - name: clone-kube-cleanup-operator
