@@ -24,7 +24,7 @@ steps:
   - make build
   - cp bin/kube-cleanup-operator /go
   - cp Dockerfile /go
-  - sed 's/FROM alpine/FROM arm32v7/alpine/g' /go/Dockerfile
+  - sed 's=FROM alpine=FROM arm32v7/alpine=g /go/Dockerfile
 
 - name: publish-kube-cleanup-operator
   image: docker-registry:5000/drone-plugins/kaniko:latest
@@ -32,4 +32,4 @@ steps:
     registry: docker.artificialcreature.com
     repo: lwolf/kube-cleanup-operator
     tags: latest
-    log: debug
+    log: info
