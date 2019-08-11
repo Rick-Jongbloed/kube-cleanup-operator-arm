@@ -28,6 +28,7 @@ steps:
   - make install_deps
   - make build
   - cp bin/kube-cleanup-operator /go
+  - ls /go
 
 - name: publish-authelia
   image: docker-registry:5000/drone-plugins/kaniko:latest
@@ -36,4 +37,4 @@ steps:
     repo: lwolf/kube-cleanup-operator
     tags: latest
     log: debug
-    d
+    dockerfile: kube-cleanup-operator/Dockerfile
