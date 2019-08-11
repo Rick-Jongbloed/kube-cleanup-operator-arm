@@ -1,27 +1,29 @@
 kind: pipeline
 name: kube-cleanup-operator-arm
 
-platform:
-  os: linux
-  architecture: arm
-  variant: 7
+# platform:
+#   os: linux
+#   architecture: arm
+#   variant: 7
+
+workspace:
+  base: /go
 
 steps:
 - name: clone-kube-cleanup-operator
   image: drone/git
   commands: 
-  - git clone https://github.com/lwolf/kube-cleanup-operator
+  - git clone https://github.com/lwolf/kube-cleanup-operator src/github.com/lwolf/kube-cleanup-operator
 
 - name: build-kube-cleanup-operator
   image: golang:buster
   commands:
-  - cd kube-cleanup-operator
-  - apt update
-  - apt install -y --no-install-recommends make
+  #- apt update
+  #- apt install -y --no-install-recommends make
+  - cd src/github.com/lwolf/kube-cleanup-operator
   - make install_deps
   - make build
-  - cp bin/kube-cleanup-operator ..
-
+  - cp bin/kube-cleanup-operator /go
 
 - name: publish-authelia
   image: docker-registry:5000/drone-plugins/kaniko:latest
