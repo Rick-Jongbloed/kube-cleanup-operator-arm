@@ -11,7 +11,7 @@ steps:
   - git clone https://github.com/lwolf/kube-cleanup-operator src/github.com/lwolf/kube-cleanup-operator
 
 - name: build-kube-cleanup-operator
-  image: golang:buster
+  image: golang:alpine
   commands:
   - cd src/github.com/lwolf/kube-cleanup-operator
   - go get -u github.com/golang/dep/cmd/dep
@@ -22,8 +22,8 @@ steps:
   - ls -la
   - ls -la bin/ 
   - cp bin/kube-cleanup-operator /go
-  #- cp Dockerfile /go
-  #- sed -i 's;FROM alpine;FROM arm32v7/alpine;g' /go/Dockerfile
+  - cp Dockerfile /go
+  - sed -i 's;FROM alpine;FROM arm32v7/alpine;g' /go/Dockerfile
 
 - name: publish-kube-cleanup-operator
   image: docker-registry:5000/drone-plugins/kaniko:latest
