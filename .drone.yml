@@ -17,7 +17,10 @@ steps:
   - go get -u github.com/golang/dep/cmd/dep
   - sed -i 's;GOARCH=amd64;GOARM=7 GOARCH=arm;g' Makefile
   - make install_deps
+  - ls -la
   - make build
+  - ls -la
+  - ls -la bin/ 
   - cp bin/kube-cleanup-operator /go
   #- cp Dockerfile /go
   #- sed -i 's;FROM alpine;FROM arm32v7/alpine;g' /go/Dockerfile
