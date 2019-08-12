@@ -5,18 +5,17 @@ workspace:
   base: /go
 
 steps:
-# - name: clone-kube-cleanup-operator
-#   image: drone/git
-#   commands:
-#   - git clone https://github.com/lwolf/kube-cleanup-operator src/github.com/lwolf/kube-cleanup-operator
+- name: clone-kube-cleanup-operator
+  image: drone/git
+  commands:
+  - git clone https://github.com/lwolf/kube-cleanup-operator src/github.com/lwolf/kube-cleanup-operator
 
 - name: build-kube-cleanup-operator
   image: golang:alpine
   commands:
   - apk update
   - apk add --no-cache git make
-  - go get -u -v github.com/lwolf/kube-cleanup-operator
-  - go get -u -v github.com/golang/dep/cmd/dep
+  - go get -u github.com/golang/dep/cmd/dep
   - cd src/github.com/lwolf/kube-cleanup-operator
   - ls /go
   - sed -i 's;GOARCH=amd64;GOARM=7 GOARCH=arm;g' Makefile
