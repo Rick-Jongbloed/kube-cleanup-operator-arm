@@ -15,15 +15,12 @@ steps:
   commands:
   - cd src/github.com/lwolf/kube-cleanup-operator
   - go get -u github.com/golang/dep/cmd/dep
-  - make install_deps
   - sed -i 's;GOARCH=amd64;GOARM=7 GOARCH=arm;g' Makefile
-  - cat Makefile
+  - make install_deps
   - make build
   - cp bin/kube-cleanup-operator /go
   - cp Dockerfile /go
   - sed -i 's;FROM alpine;FROM arm32v7/alpine;g' /go/Dockerfile
-  - cd /go
-  - ./kube-cleanup-operator --help
 
 - name: publish-kube-cleanup-operator
   image: docker-registry:5000/drone-plugins/kaniko:latest
