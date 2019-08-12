@@ -13,6 +13,8 @@ steps:
 - name: build-kube-cleanup-operator
   image: golang:alpine
   commands:
+  - apk update 
+  - apk add --no-cache git make
   - cd src/github.com/lwolf/kube-cleanup-operator
   - go get -u github.com/golang/dep/cmd/dep
   - sed -i 's;GOARCH=amd64;GOARM=7 GOARCH=arm;g' Makefile
