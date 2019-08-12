@@ -19,8 +19,8 @@ steps:
   - make install_deps
   - make build
   - cp bin/kube-cleanup-operator /go
-  - cp Dockerfile /go
-  - sed -i 's;FROM alpine;FROM arm32v7/alpine;g' /go/Dockerfile
+  #- cp Dockerfile /go
+  #- sed -i 's;FROM alpine;FROM arm32v7/alpine;g' /go/Dockerfile
 
 - name: publish-kube-cleanup-operator
   image: docker-registry:5000/drone-plugins/kaniko:latest
